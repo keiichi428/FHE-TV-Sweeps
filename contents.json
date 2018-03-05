@@ -1,0 +1,24 @@
+{
+	"headline": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+	"prizes": [
+	{
+		"title": "Prize #1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+		"thumb": "http://via.placeholder.com/300x250"
+	},
+	{
+		"title": "Prize #2",
+		"description": "Impedit beatae incidunt eos officia, placeat, sint tempore maxime!",
+		"thumb": "http://via.placeholder.com/300x250"
+	},
+	{
+		"title": "Prize #3",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+		"thumb": "http://via.placeholder.com/300x250"
+	},
+	{
+		"title": "Prize #4",
+		"description": "Impedit aspernatur earum accusamus officia, placeat, sint tempore maxime!",
+		"thumb": "http://via.placeholder.com/300x250"
+	}]
+}
