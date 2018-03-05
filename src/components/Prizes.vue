@@ -4,7 +4,7 @@
     <div v-if="prizes" v-for="prize in prizes" v-bind:key="prize" class="col s6 m4 l3 prize">
       <div class="card">
         <a class="card-image" :href="prize.link" target="_blank">
-          <img :src="prize.thumb" class="responsive-img"/>
+          <img :src="parsePrizeURL(prize.thumb)" class="responsive-img"/>
         </a>
         <div class="card-content">
           <h6>{{prize.title}}</h6>
@@ -19,7 +19,16 @@
 <script>
 export default {
   name: 'Prizes',
-  props: ['prizes']
+  props: ['prizes'],
+  methods:{
+    parsePrizeURL(path){
+      if(path.indexOf("//") > -1){
+          return path
+      }else{
+        return 'static/prize/' + path
+      }
+    }
+  }
 }
 </script>
 

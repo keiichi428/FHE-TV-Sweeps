@@ -1,7 +1,7 @@
 <template>
 <div id="app" class="container">
   <h3>{{headline}}</h3>
-  <img src="http://via.placeholder.com/1280x500" class="responsive-img">
+  <img src="static/img/hero.jpg" class="responsive-img">
   <Prizes v-if="model" :prizes="model.prizes"></Prizes>
   <p class="form-header">{{formHeader}}</p>
   <EntryForm v-if="model" :model="model"></EntryForm>

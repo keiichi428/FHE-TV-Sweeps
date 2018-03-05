@@ -1,31 +1,32 @@
 {
 	"headline": "You could win a piece of Fox TV history!",
-	"formHeader": "Enter here for a chance to win Bones memorabilia and TV show props!",
 	"prizes": [
 	{
 		"title": "Prize #1",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-		"thumb": "http://via.placeholder.com/300x250",
+		"thumb": "prize-thumb.jpg",
 		"link": "http://www.google.com/"
 	},
 	{
 		"title": "Prize #2",
 		"description": "Impedit beatae incidunt eos officia, placeat, sint tempore maxime!",
-		"thumb": "http://via.placeholder.com/300x250",
+		"thumb": "prize-thumb.jpg",
 		"link": "http://www.google.com/"
 	},
 	{
 		"title": "Prize #3",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-		"thumb": "http://via.placeholder.com/300x250",
+		"thumb": "prize-thumb.jpg",
 		"link": "http://www.google.com/"
 	},
 	{
 		"title": "Prize #4",
 		"description": "Impedit aspernatur earum accusamus officia, placeat, sint tempore maxime!",
-		"thumb": "http://via.placeholder.com/300x250",
+		"thumb": "prize-thumb.jpg",
 		"link": "http://www.google.com/"
 	}],
+
+	"formHeader": "Enter here for a chance to win Bones memorabilia and TV show props!",
 	"newsletter_header": "BE THE FIRST TO GET EXCLUSIVE UPDATES.",
 	"newsletter_description": "Yes! Send me email updates and offers from Fox and its Company Affiliates. I can opt out at any time. By signing up below, I agree to the <a href='https://www.foxmovies.com/privacy-policy' target='_blank'>Fox Privacy Policy</a> and <a href='https://www.foxmovies.com/terms-and-conditions' target='_blank'>Terms of Use</a>.<br>Questions? Contact Fox <a href='mailto:privacypolicy@foxhome.com'>privacypolicy@foxhome.com</a>."
 }

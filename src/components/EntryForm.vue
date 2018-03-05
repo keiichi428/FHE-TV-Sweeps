@@ -21,11 +21,11 @@
         </select>
         <label>Year of birth</label>
       </div>
-      <div class="input-field col s12">
+      <div class="input-field col s6">
         <input id="zip" type="number" class="validate">
         <label for="zip">Zip Code</label>
       </div>
-      <div class="input-field col s12">
+      <div class="input-field col s6">
         <input id="gender" type="text" class="validate">
         <label for="gender">Gender</label>
       </div>
@@ -54,6 +54,8 @@
 
 <script>
 import M from 'materialize-css'
+
+let dobSelectors
 
 export default {
   name: 'EntryForm',
@@ -85,9 +87,32 @@ export default {
       newsletter_description: ''
     }
   },
+  methods:{
+    closeDobSelectors(){
+      if(!dobSelectors){
+        console.error('dobSelectors is not defined')
+        return
+      }
+      dobSelectors.forEach((elem) => {
+        // console.log(elem.M_FormSelect);
+        elem.M_FormSelect.dropdown.close()
+    })
+    }
+  },
   mounted () {
-    this.$el.querySelectorAll('select').forEach(function (elem) {
-      M.FormSelect.init(elem)
+    dobSelectors = this.$el.querySelectorAll('select')
+    dobSelectors.forEach(function (elem) {
+      elem.m =
+      M.FormSelect.init(elem, {
+        dropdownOptions: {
+          closeOnClick: false
+        }})
+    })
+    const vm = this
+    this.$el.querySelectorAll('.dropdown-content li>span').forEach(function (elem) {
+      elem.addEventListener('click', function (e) {
+        vm.closeDobSelectors()
+      })
     })
     this.newsletter_header = this.model.newsletter_header
     this.newsletter_description = this.model.newsletter_description
@@ -96,9 +121,11 @@ export default {
 </script>
 
 <style lang="css" >
-.form-wrapper{
+.row .col.form-wrapper{
   display: inline-block;
   float: none!important;
+  padding: 0;
+  max-width: 360px;
 }
 .input{
   font-family: 'Mukta Malar', sans-serif;
