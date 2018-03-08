@@ -1,4 +1,4 @@
-# fox-tv-sweeps-webpack
+# FOX TV Sweepstakes Template
 
 > Fox TV Sweepstakes with Vue.js
 

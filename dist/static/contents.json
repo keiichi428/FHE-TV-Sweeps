@@ -1,32 +1,33 @@
 {
-	"headline": "You could win a piece of Fox TV history!",
+	"campaign_id": "YYYYMMDD_TITLE_OR_EVENT_CAMPAIGN_ID",
+	"headline": "You could win a piece of <img src='static/img/logo-fox.png'>TV history!",
+	"inHeaderMessage": "Enter here for a chance to win Bones memorabilia and TV show props!",
 	"prizes": [
 	{
-		"title": "Prize #1",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-		"thumb": "prize-thumb.jpg",
+		"title": "WIN A<p>Fluoroscopic Imaging Unit Poster</p>",
+		"description": "One of the posters used on screen in BONES. Seen in season X, episode X.",
+		"thumb": "prize-thumb1.jpg",
 		"link": "http://www.google.com/"
 	},
 	{
-		"title": "Prize #2",
-		"description": "Impedit beatae incidunt eos officia, placeat, sint tempore maxime!",
-		"thumb": "prize-thumb.jpg",
+		"title": "WIN A<p>Anthological Beaded Asset</p>",
+		"description": "The beaded asset used on screen in BONES. Seen in season X, episode X.",
+		"thumb": "prize-thumb2.jpg",
 		"link": "http://www.google.com/"
 	},
 	{
-		"title": "Prize #3",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-		"thumb": "prize-thumb.jpg",
+		"title": "WIN A<p>Prince Charming Doll</p>",
+		"description": "The prince charming doll used on screen in BONES. Seen in season X.",
+		"thumb": "prize-thumb3.jpg",
 		"link": "http://www.google.com/"
 	},
 	{
-		"title": "Prize #4",
-		"description": "Impedit aspernatur earum accusamus officia, placeat, sint tempore maxime!",
-		"thumb": "prize-thumb.jpg",
+		"title": "WIN A<p>Assorted Bones</p>",
+		"description": "Assorted bones used on screen throughout BONES. Seen in season X, episode X",
+		"thumb": "prize-thumb4.jpg",
 		"link": "http://www.google.com/"
 	}],
 
-	"formHeader": "Enter here for a chance to win Bones memorabilia and TV show props!",
-	"newsletter_header": "BE THE FIRST TO GET EXCLUSIVE UPDATES.",
+	"newsletter_header": "BE THE FIRST TO GET EXCLUSIVE UPDATES!",
 	"newsletter_description": "Yes! Send me email updates and offers from Fox and its Company Affiliates. I can opt out at any time. By signing up below, I agree to the <a href='https://www.foxmovies.com/privacy-policy' target='_blank'>Fox Privacy Policy</a> and <a href='https://www.foxmovies.com/terms-and-conditions' target='_blank'>Terms of Use</a>.<br>Questions? Contact Fox <a href='mailto:privacypolicy@foxhome.com'>privacypolicy@foxhome.com</a>."
 }

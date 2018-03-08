@@ -1,14 +1,14 @@
 <template lang="html">
 <div class="col s12">
   <div v-if="prizes" class="row prizes">
-    <div v-if="prizes" v-for="prize in prizes" v-bind:key="prize" class="col s6 m4 l3 prize">
+    <div v-for="(prize,index) in prizes" v-bind:key="index" class="col s6 m4 xl3 prize">
       <div class="card">
-        <a class="card-image" :href="prize.link" target="_blank">
+        <a class="card-image" :href="parsePrizeURL(prize.link)" :title="prize.title.replace(/<\/?[^>]+(>|$)/g, ' ')" target="_blank">
           <img :src="parsePrizeURL(prize.thumb)" class="responsive-img"/>
         </a>
         <div class="card-content">
-          <h6>{{prize.title}}</h6>
-          <p class="left-align">{{prize.description}}</p>
+          <h6 class="prize-title" v-html="prize.title"></h6>
+          <p class="left-align prize-description" v-html="prize.description"></p>
         </div>
       </div>
     </div>
@@ -25,19 +25,19 @@ export default {
       if(path.indexOf("//") > -1){
           return path
       }else{
-        return 'static/prize/' + path
+        return './static/prize/' + path
       }
     }
   }
 }
 </script>
 
-<style lang="css" scoped>
+<style >
 .prizes{
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: -1rem;
+  margin-top: -2rem;
 }
 .row .col.prize{
   margin-left: 0 !important;
@@ -45,10 +45,28 @@ export default {
 }
 .card{
   height: 100%;
+  margin-top: 0;
 }
 .card .card-content{
   padding: .5rem 1.25rem 0 1.25rem;
-  /* word-break: break-all; */
 }
+.prize-title{
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.21em;
+}
+
+.prize-description{
+  color: #808080;
+  text-align: left;
+}
+
+.card .card-content .prize-title p{
+  font-weight: 500;
+  font-size:.75em;
+  color: #d57c07;
+  text-transform: uppercase;
+}
+
 
 </style>
