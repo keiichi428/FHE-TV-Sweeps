@@ -14,6 +14,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
+const contents_json = require('../static/contents.json')
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -75,6 +76,8 @@ const webpackConfig = merge(baseWebpackConfig, {
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
+      title: contents_json.title,
+      longDescription: contents_json.inHeaderMessage,
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),

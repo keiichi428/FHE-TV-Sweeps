@@ -33,13 +33,16 @@ export default {
   color: #fff;
   transition: all .3s;
   transform: scale(.85);
+  will-change: transform, opacity;
+  margin: 1rem;
 }
 
 .btn-entry:before{
   content: "";
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   background-image:url(../img/btn-enter.png);
   background-position: top;
   background-size: 100% 200%;

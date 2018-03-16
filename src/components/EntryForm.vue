@@ -4,6 +4,7 @@
     <input type="hidden" name="REG_SOURCE" v-if="model" :value="model.campaign_id" class="testregsource">
     <input type="hidden" name="ri_url" value="https://foxus.rsys2.net/pub/rf" />
     <input type="hidden" name="_ri_"  value="X0Gzc2X%3DWQpglLjHJlTQGrGIIwUiGBcnIh2lDhzdrcv9L6nVwjpnpgHlpgneHmgJoXX0Gzc2X%3DWQpglLjHJlTQGsrzaNizbJPtIaBRuRK0riwSDtDO" class="idtest">
+    <input type="hidden" name="NEWSLETTER_MOVIES" value="1" />
 
     <div class="col s12 m8 form-wrapper">
         <h4 class="row text-official-entry-form">
@@ -76,11 +77,31 @@
 <script>
 import M from 'materialize-css'
 import SmoothScroll from 'smoothscroll'
-const ERR_EMAIL_EMPTY = "Email address is required.",
-ERR_DOB_MONTH_EMPTY = "Month of birth is required.",
-ERR_ZIP_EMPTY = "Zip code is required.",
-ERR_GENDER_EMPTY = "Gender is required."
-let dobSelectors, theForm
+import axios from 'axios'
+
+const
+  ERR_EMAIL_EMPTY = 'Email address is required.',
+  ERR_EMAIL_INVALID = 'Invalid Email address.',
+  ERR_DOB_MONTH_EMPTY = 'Month of birth is required.',
+  ERR_DOB_YEAR_EMPTY = 'Year of birth is required.',
+  ERR_ZIP_EMPTY = 'Zip code is required.',
+  ERR_ZIP_INVALID = 'Invalid Zip code.',
+  ERR_GENDER_EMPTY = 'Gender is required.',
+  ERR_TC_EMPTY = 'You need to consent to the Fox Privacy Policy and Terms of Use.'
+
+let
+  dobSelectors,
+  theForm,
+  i_email,
+  s_dob_month,
+  i_dob_month,
+  s_dob_year,
+  i_dob_year,
+  i_zip,
+  s_gender,
+  i_gender,
+  i_tc_agreed,
+  btn_submit
 
 export default {
   name: 'EntryForm',
@@ -156,20 +177,10 @@ export default {
       this.newsletter_description = this.model.newsletter_description
     },
 
-    initValidation (){
+    initValidation () {
       theForm = this.$el
-      theForm.addEventListener("submit", this.onFormSubmit)
-    },
+      theForm.addEventListener('submit', this.onFormSubmit)
 
-    onFormSubmit(e){
-      console.log("onFormSubmit")
-      e.preventDefault()
-      this.$el.querySelectorAll('.error').forEach(function(elem){
-        elem.classList.remove('error')
-      });
-      console.log(this.$el.querySelectorAll('.error'))
-      let errors = []
-      const
       i_email = this.$el.querySelector('input[name=email_address_]'),
       s_dob_month = this.$el.querySelector('select[name=dob_month]'),
       i_dob_month = this.$el.querySelector('.dob-month input'),
@@ -177,37 +188,123 @@ export default {
       i_dob_year = this.$el.querySelector('.dob-year input'),
       i_zip = this.$el.querySelector('input[name=zip]'),
       s_gender = this.$el.querySelector('select[name=gender]'),
-      i_gender = this.$el.querySelector('.gender input')
+      i_gender = this.$el.querySelector('.gender input'),
+      i_tc_agreed = this.$el.querySelector('#tc_agreed'),
+      btn_submit = this.$el.querySelector('input[type=submit]')
+
+      const fields = [i_email, i_dob_month, i_dob_year, i_zip, i_gender, i_tc_agreed], vm = this
+      fields.forEach((field) => {
+        field.addEventListener('change', vm.silentVaidation)
+        field.addEventListener('blur', vm.silentVaidation)
+      })
+      this.silentVaidation()
+    },
+
+    validateEmail (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(email)
+    },
+
+    silentVaidation () {
+      let errors = []
 
       // email - empty?
-      if(!i_email.value || i_email.value.length < 0){
+      if (!i_email.value || i_email.value.length < 0) {
         errors.push(ERR_EMAIL_EMPTY)
-        i_email.classList.add('error')
+      } else if (i_email.value && !this.validateEmail(i_email.value)) {
+        // email -valid?
+        errors.push(ERR_EMAIL_INVALID)
       }
 
       // month of birth - unselected?
-      if(!s_dob_month.value || s_dob_month.value === '' ){
+      if (!s_dob_month.value || s_dob_month.value === '') {
         errors.push(ERR_DOB_MONTH_EMPTY)
-        i_dob_month.classList.add('error')
       }
 
       // year of birth - unselected?
-      if(!s_dob_year.value || s_dob_year.value === '' ){
-        errors.push(ERR_DOB_MONTH_EMPTY)
-        i_dob_year.classList.add('error')
+      if (!s_dob_year.value || s_dob_year.value === '') {
+        errors.push(ERR_DOB_YEAR_EMPTY)
       }
 
       // zip - empty?
-      if(!i_zip.value || i_zip.value.length < 0){
+      if (!i_zip.value || i_zip.value.length < 1) {
         errors.push(ERR_ZIP_EMPTY)
-        i_zip.classList.add('error')
+      }else if (i_zip.value.length < 5) {
+        // zip - invalid?
+        errors.push(ERR_ZIP_INVALID)
       }
 
       // gender - unselected?
-      if(!s_gender.value || s_gender.value === '' ){
+      if (!s_gender.value || s_gender.value === '') {
         errors.push(ERR_GENDER_EMPTY)
+      }
+      if(!i_tc_agreed.checked){
+        errors.push(ERR_TC_EMPTY)
+      }
+
+      if (errors.length < 1) {
+        btn_submit.removeAttribute('disabled')
+      } else {
+        btn_submit.setAttribute('disabled', '')
+      }
+
+
+      // console.error(errors);
+      return errors
+    },
+
+    onFormSubmit (e) {
+      console.log('onFormSubmit')
+      e.preventDefault()
+      this.$el.querySelectorAll('.error').forEach(function (elem) {
+        elem.classList.remove('error')
+      })
+
+      let errors = this.silentVaidation()
+
+      if(errors.includes(ERR_EMAIL_INVALID) || errors.includes(ERR_EMAIL_INVALID) ){
+        i_email.classList.add('error')
+      }
+      if(errors.includes(ERR_DOB_MONTH_EMPTY)){
+        i_dob_month.classList.add('error')
+      }
+
+      if(errors.includes(ERR_DOB_YEAR_EMPTY)){
+        i_dob_year.classList.add('error')
+      }
+
+      if(errors.includes(ERR_ZIP_EMPTY) || errors.includes(ERR_ZIP_INVALID)){
+        i_zip.classList.add('error')
+      }
+
+      if(errors.includes(ERR_GENDER_EMPTY)){
         i_gender.classList.add('error')
       }
+
+      if(errors.length < 1){
+        console.log("No errors! let's submit the form")
+        console.log(this.$el.attributes.action.nodeValue)
+        let formData = {}
+        this.$el.querySelectorAll('input, select').forEach( (elem) => {
+          if(elem.name){
+            formData[elem.name] = elem.value
+          }
+        })
+
+        const axios_config = {
+          method: 'get',
+          url: this.$el.attributes.action.nodeValue,
+          data:formData
+        }
+
+        console.log(axios_config);
+        axios(axios_config)
+        .then( (res) => {
+          console.log(res);
+        })
+      }
+
+
     }
   },
   mounted () {
@@ -281,8 +378,6 @@ input[type=number].input-text:focus:not([readonly]){
     border-bottom: 1px solid #d7d7d7;
 }
 
-
-
 input[type=text].input-text,
 input[type=email].input-text,
 input[type=number].input-text{
@@ -291,7 +386,6 @@ input[type=number].input-text{
   background: #f2f2f2;
   margin-top: 1rem;
 }
-
 
 .month-year-divider{
   vertical-align: bottom;

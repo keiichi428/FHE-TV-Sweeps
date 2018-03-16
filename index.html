@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
   <title>Fox TV Sweeps</title>
 
-  <meta name="description" content="">
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
-  <meta property="og:image" content="">
+  <meta name="description" content="<%= htmlWebpackPlugin.options.longDescription %>">
+  <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>">
+  <meta property="og:description" content="<%= htmlWebpackPlugin.options.longDescription %>">
+  <meta property="og:image" content="./img/og.jpg">
   <meta property="og:site_name" content="">
   <meta property="og:type" content="video.tv_show">
   <meta property="og:url" content="">
@@ -20,14 +20,16 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="">
   <meta name="twitter:creator" content="@">
-  <meta name="twitter:title" content="">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.title %>">
+  <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.longDescription %>">
+  <meta name="twitter:image:src" content="./img/og.jpg">
 
 
   <link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon">
   <link rel="icon" href="./static/favicon.ico" type="image/x-icon">
   <link rel="canonical" href="" />
+  <meta name="theme-color" content="#d57c07"/>
+  <link rel="manifest" href="./static/manifest.json">
 
 </head>
 

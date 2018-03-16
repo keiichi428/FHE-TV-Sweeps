@@ -1,4 +1,4 @@
-# FOX TV Sweepstakes Template
+# FOX TV Sweepstakes Template Prototype for Bones
 
 > Fox TV Sweepstakes with Vue.js
 
